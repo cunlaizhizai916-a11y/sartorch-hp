@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARTORCHI | Bespoke Tailoring — 1着のスーツを通して、人生に自信と品位を</title>
+    <meta name="description" content="SARTORCHI（サルトーチ）は完全オーダーメイドのビスポークテーラリング。あなたの身体と人生に寄り添う一着を、¥50,000から。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0c0b0a;
+            --charcoal: #161412;
+            --ink: #1d1b18;
+            --paper: #faf8f4;
+            --cream: #f3efe8;
+            --copper: #b87c4c;
+            --copper-light: #d9a87a;
+            --copper-dim: rgba(184, 124, 76, 0.35);
+            --grey: #8c867d;
+            --line: rgba(184, 124, 76, 0.18);
+            --line-dark: rgba(255, 255, 255, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 2;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--copper); color: #fff; }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: #3a342e; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--copper); }
+
+        .en { font-family: 'Cormorant Garamond', serif; letter-spacing: 0.1em; }
+
+        /* ===================== Progress bar ===================== */
+        .progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, var(--copper), var(--copper-light));
+            z-index: 2000;
+            transition: width 0.1s linear;
+        }
+
+        /* ===================== Header ===================== */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 0;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(12, 11, 10, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line-dark);
+        }
+
+        nav {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--copper-dim);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .brand:hover img { transform: rotate(8deg) scale(1.05); }
+
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            color: #fff;
+        }
+
+        .brand-name small {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 0.42em;
+            color: var(--copper-light);
+            margin-top: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 42px;
+        }
+
+        nav ul a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 0.18em;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+
+        nav ul a:hover { color: var(--copper-light); }
+
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            width: 0; height: 1px;
+            background: var(--copper-light);
+            transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        nav ul a:hover::after { width: 100%; }
+
+        .nav-cta {
+            padding: 11px 28px;
+            border: 1px solid var(--copper);
+            color: var(--copper-light) !important;
+            border-radius: 2px;
+        }
+
+        .nav-cta::after { display: none; }
+
+        .nav-cta:hover {
+            background: var(--copper);
+            color: #fff !important;
+        }
+
+        /* ===================== Hero ===================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 720px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: -8% 0;
+            background: url('images/hero-main.jpg') center 22%/cover no-repeat;
+            will-change: transform;
+            transform: scale(1.08);
+            animation: heroIn 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes heroIn {
+            from { transform: scale(1.16); filter: brightness(0.5); }
+            to { transform: scale(1.08); filter: brightness(1); }
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(100deg, rgba(12, 11, 10, 0.88) 18%, rgba(12, 11, 10, 0.45) 55%, rgba(12, 11, 10, 0.25) 100%),
+                linear-gradient(to top, rgba(12, 11, 10, 0.9), transparent 35%);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--copper-light);
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 0.5s forwards;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 56px; height: 1px;
+            background: var(--copper);
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5.2vw, 64px);
+            font-weight: 300;
+            line-height: 1.55;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 0.8s forwards;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--copper-light);
+        }
+
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(17px, 1.8vw, 22px);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.12em;
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 1.05s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 1.3s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 44px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn .arrow { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn:hover .arrow { transform: translateX(6px); }
+
+        .btn-copper {
+            background: linear-gradient(135deg, var(--copper), #9a6238);
+            color: #fff;
+            border: 1px solid transparent;
+            box-shadow: 0 12px 32px rgba(184, 124, 76, 0.3);
+        }
+
+        .btn-copper:hover {
+            box-shadow: 0 16px 44px rgba(184, 124, 76, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: #fff;
+        }
+
+        .btn-ghost:hover {
+            background: #fff;
+            color: var(--black);
+        }
+
+        .hero-stats {
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            z-index: 3;
+            border-top: 1px solid var(--line-dark);
+            background: rgba(12, 11, 10, 0.55);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-stats-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat {
+            padding: 26px 10px;
+            text-align: center;
+            border-right: 1px solid var(--line-dark);
+        }
+
+        .stat:first-child { border-left: 1px solid var(--line-dark); }
+
+        .stat .v {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--copper-light);
+            letter-spacing: 0.05em;
+        }
+
+        .stat .l {
+            font-size: 11.5px;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(34px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===================== Marquee ===================== */
+        .marquee {
+            background: var(--black);
+            border-bottom: 1px solid var(--line-dark);
+            overflow: hidden;
+            padding: 22px 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 80px;
+            width: max-content;
+            animation: marquee 36s linear infinite;
+        }
+
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+
+        .marquee span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .marquee span::after {
+            content: '·';
+            color: var(--copper);
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ===================== Reveal ===================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(54px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.14s; }
+        .reveal-delay-2 { transition-delay: 0.28s; }
+        .reveal-delay-3 { transition-delay: 0.42s; }
+
+        /* ===================== Section common ===================== */
+        .section {
+            padding: 150px 40px;
+        }
+
+        .container { max-width: 1320px; margin: 0 auto; }
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 30px;
+            margin-bottom: 24px;
+        }
+
+        .sec-no {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 0.3em;
+            color: var(--copper);
+        }
+
+        .sec-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4.6vw, 60px);
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            line-height: 1.15;
+        }
+
+        .sec-jp {
+            font-size: 15px;
+            letter-spacing: 0.24em;
+            color: var(--grey);
+            margin-bottom: 70px;
+        }
+
+        .dark { background: var(--black); color: #fff; }
+        .dark .sec-jp { color: rgba(255, 255, 255, 0.45); }
+
+        /* ===================== Value (オーダーの価値) ===================== */
+        .values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+
+        .value {
+            background: var(--paper);
+            padding: 56px 44px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.6s ease;
+        }
+
+        .value::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--copper), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .value:hover::before { transform: scaleX(1); }
+        .value:hover { background: #fff; }
+
+        .value .v-no {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 0.25em;
+            color: var(--copper);
+            margin-bottom: 26px;
+            display: block;
+        }
+
+        .value h3 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .value .v-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: 0.15em;
+            color: var(--copper);
+            margin-bottom: 22px;
+        }
+
+        .value p {
+            font-size: 14.5px;
+            color: #5d574e;
+            line-height: 2;
+        }
+
+        /* ===================== Philosophy ===================== */
+        .philosophy {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy .container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .philosophy blockquote {
+            font-size: clamp(24px, 2.8vw, 36px);
+            font-weight: 300;
+            line-height: 1.9;
+            letter-spacing: 0.06em;
+            margin: 40px 0;
+        }
+
+        .philosophy blockquote em {
+            font-style: normal;
+            color: var(--copper-light);
+        }
+
+        .philosophy p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .philosophy-img {
+            position: relative;
+        }
+
+        .philosophy-img img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: grayscale(15%);
+        }
+
+        .philosophy-img::after {
+            content: '';
+            position: absolute;
+            inset: 24px -24px -24px 24px;
+            border: 1px solid var(--copper-dim);
+            z-index: -1;
+        }
+
+        .sign {
+            margin-top: 36px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 19px;
+            color: var(--copper-light);
+            letter-spacing: 0.1em;
+        }
+
+        /* ===================== Collection ===================== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .g-cell {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+        }
+
+        .g-cell img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+        }
+
+        .g-cell:hover img { transform: scale(1.09); }
+
+        .g-cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12, 11, 10, 0.55), transparent 45%);
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+
+        .g-cell:hover::after { opacity: 1; }
+
+        .g-cap {
+            position: absolute;
+            bottom: 26px; left: 26px;
+            z-index: 2;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+        }
+
+        .g-cell:hover .g-cap { opacity: 1; transform: translateY(0); }
+
+        .g-cap .t {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            letter-spacing: 0.1em;
+            display: block;
+        }
+
+        .g-cap .s {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: var(--copper-light);
+        }
+
+        /* ===================== Pricing ===================== */
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 90px;
+        }
+
+        .price-card {
+            position: relative;
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 60px 44px 50px;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(29, 27, 24, 0.1);
+        }
+
+        .price-card.featured {
+            background: var(--black);
+            color: #fff;
+            border-color: var(--copper-dim);
+        }
+
+        .price-card .badge {
+            position: absolute;
+            top: -13px; left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--copper), #9a6238);
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            padding: 6px 22px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        .price-card .p-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+
+        .price-card .p-jp {
+            font-size: 13px;
+            letter-spacing: 0.2em;
+            color: var(--grey);
+            margin-bottom: 34px;
+        }
+
+        .price-card .p-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 46px;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--copper);
+        }
+
+        .price-card.featured .p-price { color: var(--copper-light); }
+
+        .price-card .p-from {
+            font-size: 12px;
+            color: var(--grey);
+            letter-spacing: 0.2em;
+            margin: 10px 0 32px;
+        }
+
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            font-size: 13.5px;
+            line-height: 1.8;
+        }
+
+        .price-card ul li {
+            padding: 11px 0 11px 28px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            color: #5d574e;
+        }
+
+        .price-card.featured ul li {
+            border-color: var(--line-dark);
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .price-card ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--copper);
+        }
+
+        .grade-note {
+            text-align: center;
+            font-size: 14.5px;
+            color: var(--grey);
+            line-height: 2.2;
+        }
+
+        .grade-note strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* ===================== Order Flow ===================== */
+        .flow {
+            counter-reset: step;
+            position: relative;
+        }
+
+        .flow-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 27px;
+            width: 1px;
+            background: var(--line-dark);
+        }
+
+        .flow-step {
+            position: relative;
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 44px;
+            padding-bottom: 70px;
+        }
+
+        .flow-step:last-child { padding-bottom: 0; }
+
+        .flow-dot {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            border: 1px solid var(--copper-dim);
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            color: var(--copper-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .flow-body h4 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            padding-top: 12px;
+        }
+
+        .flow-body .f-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 14px;
+            color: var(--copper-light);
+            letter-spacing: 0.15em;
+            margin-bottom: 18px;
+        }
+
+        .flow-body p {
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 14.5px;
+            max-width: 640px;
+        }
+
+        .flow-example {
+            margin-top: 18px;
+            padding: 18px 26px;
+            background: rgba(184, 124, 76, 0.08);
+            border-left: 2px solid var(--copper);
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.72);
+            max-width: 640px;
+        }
+
+        .flow-example b {
+            color: var(--copper-light);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===================== Order Samples ===================== */
+        .samples {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .sample {
+            background: #fff;
+            border: 1px solid var(--line);
+            overflow: hidden;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
+        }
+
+        .sample:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(29, 27, 24, 0.12);
+        }
+
+        .sample-img {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .sample-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sample:hover .sample-img img { transform: scale(1.07); }
+
+        .sample-body { padding: 38px 36px 42px; }
+
+        .sample-tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            color: var(--copper);
+            border: 1px solid var(--copper-dim);
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .sample-body h4 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .sample-spec {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #5d574e;
+            border-top: 1px solid var(--line);
+            padding-top: 18px;
+        }
+
+        .sample-spec dt {
+            float: left;
+            clear: left;
+            width: 84px;
+            color: var(--grey);
+            letter-spacing: 0.08em;
+        }
+
+        .sample-spec dd { margin-left: 96px; }
+
+        .sample-total {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .sample-total .lbl { font-size: 12px; letter-spacing: 0.2em; color: var(--grey); }
+
+        .sample-total .amt {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--copper);
+        }
+
+        .samples-note {
+            text-align: center;
+            font-size: 12.5px;
+            color: var(--grey);
+            margin-top: 40px;
+            letter-spacing: 0.08em;
+        }
+
+        /* ===================== Craftsmanship ===================== */
+        .crafts { display: flex; flex-direction: column; }
+
+        .craft-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 480px;
+        }
+
+        .craft-row:nth-child(even) .craft-img { order: 2; }
+
+        .craft-img { overflow: hidden; position: relative; }
+
+        .craft-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .craft-row:hover .craft-img img { transform: scale(1.06); }
+
+        .craft-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 70px 80px;
+            background: var(--charcoal);
+        }
+
+        .craft-row:nth-child(even) .craft-text { background: var(--black); }
+
+        .craft-text .c-no {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            color: var(--copper);
+            letter-spacing: 0.3em;
+            margin-bottom: 24px;
+        }
+
+        .craft-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .craft-text .c-jp {
+            font-size: 14.5px;
+            font-weight: 400;
+            color: var(--copper-light);
+            margin-bottom: 26px;
+            letter-spacing: 0.12em;
+        }
+
+        .craft-text p {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 2.1;
+        }
+
+        /* ===================== Q&A ===================== */
+        .qa-list { max-width: 920px; margin: 0 auto; }
+
+        .qa { border-bottom: 1px solid var(--line); }
+
+        .qa-q {
+            padding: 34px 10px;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            cursor: pointer;
+            font-size: 16.5px;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            transition: color 0.4s ease;
+        }
+
+        .qa-q:hover { color: var(--copper); }
+
+        .qa-q .qm {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--copper);
+            flex-shrink: 0;
+        }
+
+        .qa-q .mark {
+            margin-left: auto;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--copper);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+        }
+
+        .qa.open .qa-q .mark { transform: rotate(45deg); }
+
+        .qa-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .qa-a-inner {
+            padding: 0 56px 36px;
+            color: #5d574e;
+            font-size: 14.5px;
+            line-height: 2.1;
+        }
+
+        /* ===================== Access ===================== */
+        .access-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 70px;
+            align-items: stretch;
+        }
+
+        .access-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 30px;
+        }
+
+        .access-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 14.5px;
+        }
+
+        .access-row .k {
+            color: var(--grey);
+            letter-spacing: 0.15em;
+            font-size: 13px;
+        }
+
+        .access-row a { color: var(--copper); text-decoration: none; }
+        .access-row a:hover { text-decoration: underline; }
+
+        .map-frame {
+            width: 100%;
+            min-height: 420px;
+            border: 1px solid var(--line);
+            filter: grayscale(85%) contrast(0.95);
+            transition: filter 0.7s ease;
+        }
+
+        .map-frame:hover { filter: grayscale(0%); }
+
+        /* ===================== Contact ===================== */
+        .contact {
+            position: relative;
+            text-align: center;
+            color: #fff;
+            padding: 190px 40px;
+            overflow: hidden;
+        }
+
+        .contact-bg {
+            position: absolute;
+            inset: 0;
+            background: url('images/gallery6.jpg') center 25%/cover no-repeat fixed;
+        }
+
+        .contact-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(12, 11, 10, 0.82);
+        }
+
+        .contact-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .contact-logo {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--copper-dim);
+            margin-bottom: 40px;
+        }
+
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(42px, 6vw, 76px);
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            margin-bottom: 24px;
+        }
+
+        .contact .lead {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 56px;
+            line-height: 2.2;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sns-row {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 34px;
+        }
+
+        .sns-row a {
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            transition: color 0.4s ease;
+        }
+
+        .sns-row a:hover { color: var(--copper-light); }
+
+        /* ===================== Footer ===================== */
+        footer {
+            background: #080706;
+            color: #6e675e;
+            padding: 80px 40px 50px;
+        }
+
+        .footer-grid {
+            max-width: 1320px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand img {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--copper-dim);
+            margin-bottom: 22px;
+        }
+
+        .footer-brand .fb-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            letter-spacing: 0.32em;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 2;
+            max-width: 340px;
+        }
+
+        footer h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        footer ul { list-style: none; }
+
+        footer ul li { margin-bottom: 13px; }
+
+        footer ul a {
+            color: #8c857b;
+            text-decoration: none;
+            font-size: 13.5px;
+            letter-spacing: 0.08em;
+            transition: color 0.4s ease;
+        }
+
+        footer ul a:hover { color: #fff; }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding-top: 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-bottom a { color: #6e675e; text-decoration: none; }
+        .footer-bottom a:hover { color: var(--copper-light); }
+
+        /* ===================== Responsive ===================== */
+        @media (max-width: 980px) {
+            nav { padding: 0 24px; }
+            nav ul { gap: 22px; }
+            nav ul li:not(:last-child) { display: none; }
+            .section { padding: 100px 24px; }
+            .hero-stats-inner { grid-template-columns: repeat(2, 1fr); padding: 0; }
+            .stat { padding: 18px 8px; }
+            .values { grid-template-columns: 1fr; }
+            .philosophy .container { grid-template-columns: 1fr; gap: 60px; }
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .pricing { grid-template-columns: 1fr; }
+            .samples { grid-template-columns: 1fr; }
+            .craft-row { grid-template-columns: 1fr; min-height: 0; }
+            .craft-row:nth-child(even) .craft-img { order: 0; }
+            .craft-img { aspect-ratio: 4/3; }
+            .craft-text { padding: 48px 30px; }
+            .access-grid { grid-template-columns: 1fr; gap: 44px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 44px; }
+            .contact-bg { background-attachment: scroll; }
+            .flow-step { gap: 24px; }
+        }
+
+        @media (max-width: 560px) {
+            .gallery { grid-template-columns: 1fr; }
+            .hero-actions .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+
+    <!-- ============ Header ============ -->
+    <header id="header">
+        <nav>
+            <a class="brand" href="#top">
+                <img src="images/logo.jpg" alt="SARTORCHI ロゴ">
+                <span class="brand-name">SARTORCHI<small>BESPOKE TAILORING</small></span>
+            </a>
+            <ul>
+                <li><a href="#value">Why Bespoke</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#flow">Order Flow</a></li>
+                <li><a href="#access">Access</a></li>
+                <li><a href="#contact" class="nav-cta">Reserve</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============ Hero ============ -->
+    <div class="hero" id="top">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">Sartorchi — Bespoke Tailoring</div>
+            <h1>1着のスーツを通して、<br>人生に<em>自信</em>と<em>品位</em>を</h1>
+            <p class="hero-sub en">One suit, to dress your confidence and dignity.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-copper">Reserve a Fitting <span class="arrow">→</span></a>
+                <a href="#value" class="btn btn-ghost">Discover More</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stats-inner">
+                <div class="stat"><div class="v">¥50,000〜</div><div class="l">適正価格のオーダー</div></div>
+                <div class="stat"><div class="v">30+</div><div class="l">採寸ポイント</div></div>
+                <div class="stat"><div class="v">6–8週</div><div class="l">仕立て期間</div></div>
+                <div class="stat"><div class="v">∞</div><div class="l">カスタマイズの自由</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ Marquee ============ -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Ermenegildo Zegna</span><span>Loro Piana</span><span>Scabal</span><span>Harrisons</span><span>Biellesi</span><span>Bespoke Tailoring</span>
+            <span>Ermenegildo Zegna</span><span>Loro Piana</span><span>Scabal</span><span>Harrisons</span><span>Biellesi</span><span>Bespoke Tailoring</span>
+        </div>
+    </div>
+
+    <!-- ============ Why Bespoke ============ -->
+    <section class="section" id="value">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">01</span>
+                <h2 class="sec-label">Why Bespoke</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">既製品ではなく、オーダーを選ぶ理由</p>
+            <div class="values">
+                <div class="value reveal">
+                    <span class="v-no">№ 01</span>
+                    <h3>completely yours — 完璧なフィット</h3>
+                    <div class="v-en">Fit beyond off-the-rack</div>
+                    <p>肩幅、袖丈、ウエスト、そして姿勢の癖まで。30か所以上の採寸であなたの身体を捉え、既製品では決して届かない「違和感ゼロ」の着心地を仕立てます。スーツが身体に添うと、立ち姿そのものが変わります。</p>
+                </div>
+                <div class="value reveal reveal-delay-1">
+                    <span class="v-no">№ 02</span>
+                    <h3>あなたが決める、すべて</h3>
+                    <div class="v-en">Every detail, your choice</div>
+                    <p>生地、シルエット、ボタン、裏地、刺繍ネームまで——選ぶのはあなたです。世界の名門ミルの生地から、座右の銘の刺繍まで。「裏勝り」はその一つの楽しみに過ぎません。あなたの美学を、隅々まで反映できます。</p>
+                </div>
+                <div class="value reveal reveal-delay-2">
+                    <span class="v-no">№ 03</span>
+                    <h3>長く愛せる、適正価格</h3>
+                    <div class="v-en">Honest price, lasting value</div>
+                    <p>¥50,000から始められる、透明な価格設計。体型が変わればお直しで寄り添い、十年先まで共に歩める一着に。流行で消費される服ではなく、人生に投資する服を。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Philosophy ============ -->
+    <section class="section dark philosophy">
+        <div class="container">
+            <div>
+                <div class="sec-head reveal">
+                    <span class="sec-no">02</span>
+                    <h2 class="sec-label">Philosophy</h2>
+                </div>
+                <p class="sec-jp reveal reveal-delay-1">仕立て手の想い</p>
+                <blockquote class="reveal reveal-delay-1">スーツを仕立てることは、<br>その人の<em>これから</em>を<br>仕立てることだと思っています。</blockquote>
+                <p class="reveal reveal-delay-2">初めて袖を通した瞬間、背筋が伸びる。鏡の中の自分が、少し誇らしく見える。私がオーダースーツに魅せられたのは、その瞬間の表情の変化でした。</p>
+                <p class="reveal reveal-delay-2">どんな場面で着るのか、どんな自分でありたいのか。対話を重ねて見えてくる答えを、生地選びから一針一針にまで込めていく。既製品では満たされなかった想いに、ひとつずつ応えていきます。</p>
+                <div class="sign reveal reveal-delay-3">— Tomoya Murase, SARTORCHI</div>
+            </div>
+            <div class="philosophy-img reveal reveal-delay-2">
+                <img src="images/founder.jpg" alt="SARTORCHI 仕立て手">
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Collection ============ -->
+    <section class="section" id="collection">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">03</span>
+                <h2 class="sec-label">Collection</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">仕立ての記録</p>
+            <div class="gallery">
+                <div class="g-cell reveal">
+                    <img src="images/gallery1.jpg" alt="グレースリーピース">
+                    <div class="g-cap"><span class="t">Grey Three-Piece</span><span class="s">グレー スリーピース</span></div>
+                </div>
+                <div class="g-cell reveal reveal-delay-1">
+                    <img src="images/gallery2.jpg" alt="ティールスーツ ロンドン柄裏地">
+                    <div class="g-cap"><span class="t">Teal × London Lining</span><span class="s">遊び心の裏地</span></div>
+                </div>
+                <div class="g-cell reveal reveal-delay-2">
+                    <img src="images/gallery3.jpg" alt="グレンチェックスーツ">
+                    <div class="g-cap"><span class="t">Glen Check</span><span class="s">グレンチェック</span></div>
+                </div>
+                <div class="g-cell reveal">
+                    <img src="images/gallery4.jpg" alt="ベージュダブルスーツ">
+                    <div class="g-cap"><span class="t">Beige Double</span><span class="s">ベージュ ダブル</span></div>
+                </div>
+                <div class="g-cell reveal reveal-delay-1">
+                    <img src="images/gallery5.jpg" alt="金ボタンダブルスーツ">
+                    <div class="g-cap"><span class="t">Gold Button Double</span><span class="s">金釦 ダブル</span></div>
+                </div>
+                <div class="g-cell reveal reveal-delay-2">
+                    <img src="images/hero.jpg" alt="ネイビースリーピース">
+                    <div class="g-cap"><span class="t">Navy Three-Piece</span><span class="s">ネイビー スリーピース</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Pricing ============ -->
+    <section class="section" id="pricing" style="background: var(--cream);">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">04</span>
+                <h2 class="sec-label">Pricing</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">スタイルとグレードで決まる、透明な価格</p>
+            <div class="pricing">
+                <div class="price-card reveal">
+                    <div class="p-en">Single</div>
+                    <div class="p-jp">シングルスーツ</div>
+                    <div class="p-price">¥50,000<span style="font-size: 20px;">〜</span></div>
+                    <div class="p-from">FROM</div>
+                    <ul>
+                        <li>ジャケット＋パンツの2点</li>
+                        <li>ビジネスから式典まで最も汎用的</li>
+                        <li>初めてのオーダーにおすすめ</li>
+                    </ul>
+                </div>
+                <div class="price-card featured reveal reveal-delay-1">
+                    <div class="badge">MOST POPULAR</div>
+                    <div class="p-en">Double</div>
+                    <div class="p-jp">ダブルスーツ</div>
+                    <div class="p-price">¥60,000<span style="font-size: 20px;">〜</span></div>
+                    <div class="p-from">FROM</div>
+                    <ul>
+                        <li>ダブルブレストの華やかな存在感</li>
+                        <li>フォーマルな場面で一段上の風格</li>
+                        <li>体格を活かすシルエット設計</li>
+                    </ul>
+                </div>
+                <div class="price-card reveal reveal-delay-2">
+                    <div class="p-en">Three-Piece</div>
+                    <div class="p-jp">スリーピース</div>
+                    <div class="p-price">¥80,000<span style="font-size: 20px;">〜</span></div>
+                    <div class="p-from">FROM</div>
+                    <ul>
+                        <li>ジャケット＋パンツ＋ベストの3点</li>
+                        <li>最高の品格と完成度</li>
+                        <li>結婚式・式典・勝負の日に</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="grade-note reveal">
+                価格は<strong>スーツのタイプ（生地の使用量）× 生地グレード × オプション</strong>で決まります。<br>
+                生地は <strong>Standard</strong>（基本価格）／ <strong>Premium</strong>（Zegna等の名門ミル ＋¥15,000〜30,000）／ <strong>Exclusive</strong>（カシミア・シルク混 応相談）の3グレード。<br>
+                ボタン・裏地・刺繍などのオプションで、世界に一着だけの仕様に仕上げます。
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ Order Flow ============ -->
+    <section class="section dark" id="flow">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">05</span>
+                <h2 class="sec-label">Order Flow</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">ご注文から納品まで — あるお客様の例とともに</p>
+            <div class="flow">
+                <div class="flow-line"></div>
+                <div class="flow-step reveal">
+                    <div class="flow-dot">01</div>
+                    <div class="flow-body">
+                        <h4>カウンセリング</h4>
+                        <div class="f-en">Consultation — 約60分</div>
+                        <p>着用シーン、なりたい印象、予算感を丁寧に伺います。Instagram のDMから気軽にご予約いただけます。カフェでの対面・オンライン、どちらでも。</p>
+                        <div class="flow-example"><b>例：</b>「営業職で、初対面の信頼感を高めたい。予算は6万円前後」というご相談からスタート。</div>
+                    </div>
+                </div>
+                <div class="flow-step reveal">
+                    <div class="flow-dot">02</div>
+                    <div class="flow-body">
+                        <h4>生地・仕様選び</h4>
+                        <div class="f-en">Fabric Selection</div>
+                        <p>バンチブック（生地見本帳）から、色・質感・予算に合わせてご提案。シルエット、ボタン、裏地、刺繍ネームまで一緒に決めていきます。</p>
+                        <div class="flow-example"><b>例：</b>ネイビーの無地（Standard）に、ロンドンの街並み柄の裏地と、座右の銘の刺繍をセレクト。</div>
+                    </div>
+                </div>
+                <div class="flow-step reveal">
+                    <div class="flow-dot">03</div>
+                    <div class="flow-body">
+                        <h4>採寸</h4>
+                        <div class="f-en">Measurement — 30+ points</div>
+                        <p>肩幅・袖丈・ウエストなど30か所以上を計測。猫背や肩の傾きといった身体の癖まで記録し、あなた専用の補正を加えます。</p>
+                        <div class="flow-example"><b>例：</b>「右肩が少し下がる癖」を補正に反映。既製品で感じていた右袖のシワが解消。</div>
+                    </div>
+                </div>
+                <div class="flow-step reveal">
+                    <div class="flow-dot">04</div>
+                    <div class="flow-body">
+                        <h4>仕立て・納品</h4>
+                        <div class="f-en">Tailoring & Delivery — 6–8週</div>
+                        <p>職人の手で丁寧に縫製し、約6〜8週間でお渡しします。納品時にフィッティングを行い、必要があれば微調整。納品後のサイズ直しも承ります。</p>
+                        <div class="flow-example"><b>例：</b>納品時に袖丈を5mm調整。「身体の一部みたいだ」との一言をいただきました。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Order Samples ============ -->
+    <section class="section" id="samples">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">06</span>
+                <h2 class="sec-label">Order Samples</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">オーダー例 — 一着の組み立て方</p>
+            <div class="samples">
+                <div class="sample reveal">
+                    <div class="sample-img"><img src="images/gallery6.jpg" alt="ネイビースリーピース 着用"></div>
+                    <div class="sample-body">
+                        <span class="sample-tag">FIRST ORDER</span>
+                        <h4>初めてのオーダー、<br>ビジネスの一着</h4>
+                        <dl class="sample-spec">
+                            <dt>スタイル</dt><dd>シングルスーツ</dd>
+                            <dt>生地</dt><dd>Standard／ネイビー無地</dd>
+                            <dt>オプション</dt><dd>水牛ボタン・刺繍ネーム</dd>
+                        </dl>
+                        <div class="sample-total"><span class="lbl">TOTAL（一例）</span><span class="amt">¥58,000</span></div>
+                    </div>
+                </div>
+                <div class="sample reveal reveal-delay-1">
+                    <div class="sample-img"><img src="images/hero.jpg" alt="ネイビースリーピース ペイズリータイ"></div>
+                    <div class="sample-body">
+                        <span class="sample-tag">CEREMONY</span>
+                        <h4>結婚式・式典のための<br>スリーピース</h4>
+                        <dl class="sample-spec">
+                            <dt>スタイル</dt><dd>スリーピース</dd>
+                            <dt>生地</dt><dd>Premium／光沢ネイビー</dd>
+                            <dt>オプション</dt><dd>ペイズリー裏地・本切羽</dd>
+                        </dl>
+                        <div class="sample-total"><span class="lbl">TOTAL（一例）</span><span class="amt">¥108,000</span></div>
+                    </div>
+                </div>
+                <div class="sample reveal reveal-delay-2">
+                    <div class="sample-img"><img src="images/hero-main.jpg" alt="ネイビーダブルスーツ"></div>
+                    <div class="sample-body">
+                        <span class="sample-tag">EXECUTIVE</span>
+                        <h4>経営者の勝負服、<br>ダブルブレスト</h4>
+                        <dl class="sample-spec">
+                            <dt>スタイル</dt><dd>ダブルスーツ</dd>
+                            <dt>生地</dt><dd>Exclusive／Zegna TROFEO</dd>
+                            <dt>オプション</dt><dd>フルカスタム仕様</dd>
+                        </dl>
+                        <div class="sample-total"><span class="lbl">TOTAL</span><span class="amt">応相談</span></div>
+                    </div>
+                </div>
+            </div>
+            <p class="samples-note reveal">※ 金額はオーダー構成の一例です。生地・オプションの組み合わせにより変動します。お見積りは無料です。</p>
+        </div>
+    </section>
+
+    <!-- ============ Craftsmanship ============ -->
+    <section class="dark" style="padding: 150px 0;">
+        <div class="container" style="padding: 0 40px;">
+            <div class="sec-head reveal">
+                <span class="sec-no">07</span>
+                <h2 class="sec-label" style="color: #fff;">Craftsmanship</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1" style="margin-bottom: 80px;">細部にこそ、宿るもの</p>
+        </div>
+        <div class="crafts">
+            <div class="craft-row reveal">
+                <div class="craft-img"><img src="images/detail-fabric.jpg" alt="ミュシャ柄の裏地と生地"></div>
+                <div class="craft-text">
+                    <div class="c-no">— 01</div>
+                    <h3>The Fabric</h3>
+                    <div class="c-jp">世界の名門ミルから選ぶ</div>
+                    <p>Ermenegildo Zegna、Loro Piana、Scabal、Biellesi——。バンチブックを開いた瞬間から、オーダーの愉しみは始まります。色、織り、打ち込みの密度。あなたの肌に触れるものだから、納得いくまで選び抜いてください。</p>
+                </div>
+            </div>
+            <div class="craft-row reveal">
+                <div class="craft-img"><img src="images/detail-brand.jpg" alt="Zegna TROFEO タグ"></div>
+                <div class="craft-text">
+                    <div class="c-no">— 02</div>
+                    <h3>The Cloth</h3>
+                    <div class="c-jp">確かな品質の証</div>
+                    <p>Zegna TROFEO をはじめとするスーパーファインウール。一枚一枚に織り込まれたミルの証は、光沢、しなやかさ、そして十年先まで付き合える耐久性の約束です。</p>
+                </div>
+            </div>
+            <div class="craft-row reveal">
+                <div class="craft-img"><img src="images/detail-embroidery.jpg" alt="刺繍ネーム"></div>
+                <div class="craft-text">
+                    <div class="c-no">— 03</div>
+                    <h3>The Signature</h3>
+                    <div class="c-jp">あなただけの一文を</div>
+                    <p>裏地に忍ばせる刺繍ネーム、座右の銘。"Action is the foundational key to all success" ——袖を通すたび、自分との約束を思い出す。スーツが、あなたの物語の一部になる瞬間です。</p>
+                </div>
+            </div>
+            <div class="craft-row reveal">
+                <div class="craft-img"><img src="images/detail-construction.jpg" alt="仕立ての構造"></div>
+                <div class="craft-text">
+                    <div class="c-no">— 04</div>
+                    <h3>The Fit</h3>
+                    <div class="c-jp">違和感ゼロの着心地</div>
+                    <p>芯地の選定から内ポケットの始末まで、見えない部分こそ丁寧に。完璧に身体へ添う一着は、羽織った瞬間の「軽さ」で分かります。それが、佇まいと自信を引き出します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Q&A ============ -->
+    <section class="section">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">08</span>
+                <h2 class="sec-label">Q & A</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">よくあるご質問</p>
+            <div class="qa-list reveal">
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>納期はどのくらいですか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">採寸から完成まで、通常6〜8週間です。結婚式や式典など期日が決まっている場合は、逆算してスケジュールをご提案しますので、お早めにご相談ください。</div></div>
+                </div>
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>スーツの知識がなくても大丈夫ですか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">まったく問題ありません。むしろ初めての方にこそオーダーの価値を感じていただけます。「どんな場面で着たいか」「どんな印象になりたいか」さえ教えていただければ、生地選びからすべて伴走します。</div></div>
+                </div>
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>価格はどのように決まりますか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">スーツのタイプ（シングル／ダブル／スリーピース＝生地の使用量）と、生地のグレード、ボタンや刺繍などのオプションの組み合わせで決まります。¥50,000からご用意があり、ご予算に合わせた組み立ても可能です。お見積りは無料です。</div></div>
+                </div>
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>既製品のお直しとは何が違うのですか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">お直しは「できあがった服を身体に近づける」もの。オーダーは「あなたの身体から服を起こす」ものです。肩の傾きや姿勢の癖まで反映できるのは、ゼロから仕立てるオーダーだけ。シルエットの美しさと着心地は根本的に異なります。</div></div>
+                </div>
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>納品後のサイズ調整はできますか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">はい。体型の変化に合わせたお直しを承っています。一生もののスーツとして、納品後も長くお付き合いください。</div></div>
+                </div>
+                <div class="qa">
+                    <div class="qa-q"><span class="qm">Q.</span>どこで注文できますか？<span class="mark">+</span></div>
+                    <div class="qa-a"><div class="qa-a-inner">Instagram のDM、またはメールからご予約ください。対面でのカウンセリング・採寸のほか、オンラインでのご相談にも対応しています。</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Access ============ -->
+    <section class="section" id="access" style="background: var(--cream);">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-no">09</span>
+                <h2 class="sec-label">Access & Company</h2>
+            </div>
+            <p class="sec-jp reveal reveal-delay-1">アクセス・運営情報</p>
+            <div class="access-grid">
+                <div class="access-info reveal">
+                    <h3>SARTORCHI</h3>
+                    <div class="access-row"><span class="k">ブランド</span><span>SARTORCHI（サルトーチ）— Bespoke Tailoring</span></div>
+                    <div class="access-row"><span class="k">運営会社</span><span><a href="https://naty-group.com/" target="_blank" rel="noopener">NATY株式会社</a></span></div>
+                    <div class="access-row"><span class="k">Instagram</span><span><a href="https://www.instagram.com/sartorchi_bespoke_tailoring/" target="_blank" rel="noopener">@sartorchi_bespoke_tailoring</a></span></div>
+                    <div class="access-row"><span class="k">E-mail</span><span><a href="mailto:muratomo2006@icloud.com">muratomo2006@icloud.com</a></span></div>
+                    <div class="access-row"><span class="k">ご相談</span><span>対面（要予約）／オンライン対応可</span></div>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <iframe
+                        class="map-frame"
+                        src="https://www.google.com/maps?q=NATY%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="SARTORCHI / NATY株式会社 所在地"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <div class="contact" id="contact">
+        <div class="contact-bg"></div>
+        <div class="contact-inner">
+            <img class="contact-logo reveal" src="images/logo.jpg" alt="SARTORCHI">
+            <h2 class="reveal reveal-delay-1">Let's Begin</h2>
+            <p class="lead reveal reveal-delay-2">1着のスーツを通して、人生に自信と品位を。<br>まずは、あなたの話を聞かせてください。</p>
+            <div class="contact-btns reveal reveal-delay-2">
+                <a href="https://www.instagram.com/sartorchi_bespoke_tailoring/" target="_blank" rel="noopener" class="btn btn-copper">Instagram で相談 <span class="arrow">→</span></a>
+                <a href="mailto:muratomo2006@icloud.com?subject=%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%82%B9%E3%83%BC%E3%83%84%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-ghost">メールで相談</a>
+            </div>
+            <div class="sns-row reveal reveal-delay-3">
+                <a href="https://www.instagram.com/sartorchi_bespoke_tailoring/" target="_blank" rel="noopener">Instagram</a>
+                <a href="mailto:muratomo2006@icloud.com">E-mail</a>
+                <a href="https://naty-group.com/" target="_blank" rel="noopener">NATY Inc.</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ Footer ============ -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="images/logo.jpg" alt="SARTORCHI ロゴ">
+                <div class="fb-name">SARTORCHI</div>
+                <p>1着のスーツを通して、人生に自信と品位を。あなたの身体と生き方に寄り添う、完全オーダーメイドのビスポークテーラリング。</p>
+            </div>
+            <div>
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="#value">Why Bespoke</a></li>
+                    <li><a href="#collection">Collection</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#flow">Order Flow</a></li>
+                    <li><a href="#samples">Order Samples</a></li>
+                    <li><a href="#access">Access</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Connect</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/sartorchi_bespoke_tailoring/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="mailto:muratomo2006@icloud.com">muratomo2006@icloud.com</a></li>
+                    <li><a href="https://naty-group.com/" target="_blank" rel="noopener">NATY株式会社</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 SARTORCHI — Bespoke Tailoring. All rights reserved.</span>
+            <span>Operated by <a href="https://naty-group.com/" target="_blank" rel="noopener">NATY Inc.</a></span>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll progress bar
+        const progress = document.getElementById('progress');
+        const header = document.getElementById('header');
+        const heroBg = document.getElementById('heroBg');
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const y = window.scrollY;
+                    const max = document.documentElement.scrollHeight - window.innerHeight;
+                    progress.style.width = (y / max * 100) + '%';
+                    header.classList.toggle('scrolled', y > 60);
+                    // Hero parallax
+                    if (y < window.innerHeight) {
+                        heroBg.style.transform = `scale(1.08) translateY(${y * 0.18}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // Q&A accordion
+        document.querySelectorAll('.qa-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const qa = q.parentElement;
+                const a = qa.querySelector('.qa-a');
+                const isOpen = qa.classList.contains('open');
+                document.querySelectorAll('.qa').forEach(item => {
+                    item.classList.remove('open');
+                    item.querySelector('.qa-a').style.maxHeight = null;
+                });
+                if (!isOpen) {
+                    qa.classList.add('open');
+                    a.style.maxHeight = a.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
